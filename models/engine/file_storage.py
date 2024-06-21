@@ -128,68 +128,68 @@ class FileStorage:
             if obj_key is not None:
                 del self.__objects[obj_key]
 
-    def get(self, cls, id):
-        """
-        Retrieves an object from storage based on its class
-        and ID.
-        Args:
-            cls (class): The class of the object to be retrieved.
-            id (str): The unique identifier of the object to be
-            retrieved.
+    # def get(self, cls, id):
+    #     """
+    #     Retrieves an object from storage based on its class
+    #     and ID.
+    #     Args:
+    #         cls (class): The class of the object to be retrieved.
+    #         id (str): The unique identifier of the object to be
+    #         retrieved.
 
-        Returns:
-            object: The object if it exists in storage, or None if
-            it does not exist.
+    #     Returns:
+    #         object: The object if it exists in storage, or None if
+    #         it does not exist.
 
-        Example:
-            Suppose you have an object of class `State` with ID `1234`
-            stored in the
-            `__objects` dictionary, and you want to retrieve it:
+    #     Example:
+    #         Suppose you have an object of class `State` with ID `1234`
+    #         stored in the
+    #         `__objects` dictionary, and you want to retrieve it:
 
-            state = storage.get(State, "1234")
+    #         state = storage.get(State, "1234")
 
-            If the object exists, `state` will be the `State` object
-            with ID `1234`.
-            If it does not exist, `state` will be None.
-        """
+    #         If the object exists, `state` will be the `State` object
+    #         with ID `1234`.
+    #         If it does not exist, `state` will be None.
+    #     """
 
-        if cls and id:
-            key = "{}.{}".format(cls.__name__, id)
-            return self.__objects.get(key, None)
-        return None
+    #     if cls and id:
+    #         key = "{}.{}".format(cls.__name__, id)
+    #         return self.__objects.get(key, None)
+    #     return None
 
-    def count(self, cls=None):
-        """
-        Counts the number of objects in storage.
-        Args:
-            cls (class, optional): The class of objects to
-            count. If None, counts all objects.
-        Returns:
-            int: The number of objects in storage matching the
-            given class, or the total
-                number of objects if no class is specified.
-        Example:
-            # Count all objects in storage
-            total_objects = storage.count()
+    # def count(self, cls=None):
+    #     """
+    #     Counts the number of objects in storage.
+    #     Args:
+    #         cls (class, optional): The class of objects to
+    #         count. If None, counts all objects.
+    #     Returns:
+    #         int: The number of objects in storage matching the
+    #         given class, or the total
+    #             number of objects if no class is specified.
+    #     Example:
+    #         # Count all objects in storage
+    #         total_objects = storage.count()
 
-            # Count only objects of class 'State'
-            state_objects = storage.count(State)
-        """
+    #         # Count only objects of class 'State'
+    #         state_objects = storage.count(State)
+    #     """
 
-        from models.base_model import BaseModel
-        from models.user import User
-        from models.place import Place
-        from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.review import Review
+    #     from models.base_model import BaseModel
+    #     from models.user import User
+    #     from models.place import Place
+    #     from models.state import State
+    #     from models.city import City
+    #     from models.amenity import Amenity
+    #     from models.review import Review
 
-        classes = {
-            'BaseModel': BaseModel, 'User': User, 'Place': Place,
-            'State': State, 'City': City, 'Amenity': Amenity,
-            'Review': Review
-        }
-        if not cls and id:
-            return len(self.all(cls))
-        else:
-            return len(self.all(cls).keys())
+    #     classes = {
+    #         'BaseModel': BaseModel, 'User': User, 'Place': Place,
+    #         'State': State, 'City': City, 'Amenity': Amenity,
+    #         'Review': Review
+    #     }
+    #     if not cls and id:
+    #         return len(self.all(cls))
+    #     else:
+    #         return len(self.all(cls).keys())

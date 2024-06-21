@@ -140,66 +140,66 @@ class DBStorage:
                                        expire_on_commit=False)
         self.__session = scoped_session(session_factory)
 
-    def get(self, cls, id):
-        """
-        Retrieves an object from storage based on its class
-        and ID.
-        Args:
-            cls (class): The class of the object to be retrieved.
-            id (str): The unique identifier of the object to be
-            retrieved.
+    # def get(self, cls, id):
+    #     """
+    #     Retrieves an object from storage based on its class
+    #     and ID.
+    #     Args:
+    #         cls (class): The class of the object to be retrieved.
+    #         id (str): The unique identifier of the object to be
+    #         retrieved.
 
-        Returns:
-            object: The object if it exists in storage, or None if
-            it does not exist.
+    #     Returns:
+    #         object: The object if it exists in storage, or None if
+    #         it does not exist.
 
-        Example:
-            Suppose you have an object of class `State` with ID `1234`
-            stored in the
-            `__objects` dictionary, and you want to retrieve it:
+    #     Example:
+    #         Suppose you have an object of class `State` with ID `1234`
+    #         stored in the
+    #         `__objects` dictionary, and you want to retrieve it:
 
-            state = storage.get(State, "1234")
+    #         state = storage.get(State, "1234")
 
-            If the object exists, `state` will be the `State` object
-            with ID `1234`.
-            If it does not exist, `state` will be None.
-        """
+    #         If the object exists, `state` will be the `State` object
+    #         with ID `1234`.
+    #         If it does not exist, `state` will be None.
+    #     """
 
-        my_ob = {}
-        if cls and id:
-            for k, v in self.classes.items():
-                if v == cls:
-                    all_class = self.classes[k]
-                    result = self.__session.query(all_class)
+        # my_ob = {}
+        # if cls and id:
+        #     for k, v in self.classes.items():
+        #         if v == cls:
+        #             all_class = self.classes[k]
+        #             result = self.__session.query(all_class)
 
-                    for b in result:
-                        key = f"[{b.__class__.__name__}] ({b.id})"
-                        my_ob[key] = vars(b)
-                    return my_ob
-        return None
+        #             for b in result:
+        #                 key = f"[{b.__class__.__name__}] ({b.id})"
+        #                 my_ob[key] = vars(b)
+        #             return my_ob
+        # return None
 
-    def count(self, cls=None):
-        """
-        Counts the number of objects in storage.
-        Args:
-            cls (class, optional): The class of objects to
-            count. If None, counts all objects.
-        Returns:
-            int: The number of objects in storage matching the
-            given class, or the total
-                number of objects if no class is specified.
-        Example:
-            # Count all objects in storage
-            total_objects = storage.count()
+    # def count(self, cls=None):
+    #     """
+    #     Counts the number of objects in storage.
+    #     Args:
+    #         cls (class, optional): The class of objects to
+    #         count. If None, counts all objects.
+    #     Returns:
+    #         int: The number of objects in storage matching the
+    #         given class, or the total
+    #             number of objects if no class is specified.
+    #     Example:
+    #         # Count all objects in storage
+    #         total_objects = storage.count()
 
-            # Count only objects of class 'State'
-            state_objects = storage.count(State)
-            is passed, returns the count of all objects in storage.
-        """
-        if cls:
-            return len(self.all(cls))
-        else:
-            return len(self.all())
+    #         # Count only objects of class 'State'
+    #         state_objects = storage.count(State)
+    #         is passed, returns the count of all objects in storage.
+    #     """
+    #     if cls:
+    #         return len(self.all(cls))
+    #     else:
+    #         return len(self.all())
 
     def close(self):
         """Close the session."""
