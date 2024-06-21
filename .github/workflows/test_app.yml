@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./AirBnB_clone_v3/app/
+        working-directory: ./AirBnB_clone_v3
 
     strategy:
       matrix:
