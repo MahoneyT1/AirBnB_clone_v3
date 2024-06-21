@@ -1,5 +1,14 @@
 #!/usr/bin/python3
-""" The app server """
+"""
+The app server that serves our Flask application.
+This module parses environment variables for configuration.
+
+Environment variables:
+    HBNB_API_HOST: The hostname or IP address where the app
+    will run (default: '0.0.0.0')
+    HBNB_API_PORT: The port where the app will run
+    (default: 5000)
+"""
 
 from flask import Flask
 from flask import Blueprint
