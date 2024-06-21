@@ -1,0 +1,23 @@
+{
+    "State.d5a1b5e1-f6e5-42c7-881d-cd4cab535799": {
+        "name": "California",
+        "id": "d5a1b5e1-f6e5-42c7-881d-cd4cab535799",
+        "created_at": "2024-06-20T22:06:37.134578",
+        "updated_at": "2024-06-20T22:06:37.134578",
+        "__class__": "State"
+    },
+    "State.e55d9e64-d2d5-4e5e-9366-a0f3d25e0bcd": {
+        "name": "Alabama",
+        "id": "e55d9e64-d2d5-4e5e-9366-a0f3d25e0bcd",
+        "created_at": "2024-06-21T06:14:57.140052",
+        "updated_at": "2024-06-21T06:14:57.140052",
+        "__class__": "State"
+    },
+    "User.a91e3df7-df86-4349-adee-2b944ef2901d": {
+        "name": "okey",
+        "id": "a91e3df7-df86-4349-adee-2b944ef2901d",
+        "created_at": "2024-06-21T06:15:14.555323",
+        "updated_at": "2024-06-21T06:15:14.555323",
+        "__class__": "User"
+    }
+}

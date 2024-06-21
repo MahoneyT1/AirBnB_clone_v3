@@ -160,12 +160,7 @@ class FileStorage:
             'State': State, 'City': City, 'Amenity': Amenity,
             'Review': Review
         }
-        count_cls = 0
-
-        if cls:
-            for v in self.__object.values():
-                if isinstance(v, classes[cls]):
-                    count_cls += 1
-            return count_cls
+        if not cls and id:
+            return len(self.all(cls))
         else:
-            return len(self.__objects)
+            return len(self.all(cls).keys())
