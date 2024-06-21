@@ -39,4 +39,4 @@ jobs:
           pip install -r ../requirements.txt
       
       - name: Test App code
-        run: python3 ./AirBnB_clone_v3/api/v1/app.py
+        run: python3 /api/v1/app.py
