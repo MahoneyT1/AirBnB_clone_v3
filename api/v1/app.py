@@ -6,10 +6,12 @@ Returns:
   int: Returning value.
 """
 from api.v1.views import app_views
+from dotenv import load_dotenv
 from models import storage
 import os
 from flask import Flask
 
+load_dotenv()
 # get environment variables
 host = os.getenv('HBNB_API_HOST')
 port = os.getenv('HBNB_API_PORT')
