@@ -5,7 +5,6 @@ import json
 
 class FileStorage:
     """This class manages storage of hbnb models in JSON format"""
-    from models.base_model import BaseModel
 
     __file_path = 'file.json'
     __objects = {}
