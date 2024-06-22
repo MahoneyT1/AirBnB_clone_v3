@@ -1,9 +1,7 @@
+#!/usr/bin/python3
 import os
-from dotenv import load_dotenv
 
-load_dotenv()
-
-if os.getenv('HBNB_TYPE_STORAGE') == 'db':
+if os.environ.get('HBNB_TYPE_STORAGE') == 'db':
     from models.engine.db_storage import DBStorage
     storage = DBStorage()
     storage.reload()
