@@ -5,6 +5,19 @@ import json
 
 class FileStorage:
     """This class manages storage of hbnb models in JSON format"""
+    from models.base_model import BaseModel
+    from models.user import User
+    from models.place import Place
+    from models.state import State
+    from models.city import City
+    from models.amenity import Amenity
+    from models.review import Review
+
+    classes = {
+        'BaseModel': BaseModel, 'User': User, 'Place': Place,
+        'State': State, 'City': City, 'Amenity': Amenity,
+        'Review': Review
+    }
 
     __file_path = 'file.json'
     __objects = {}
@@ -17,19 +30,6 @@ class FileStorage:
     def all(self, cls=None):
         """Returns a dictionary of models of type"""
 
-        from models.base_model import BaseModel
-        from models.user import User
-        from models.place import Place
-        from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.review import Review
-
-        classes = {
-            'BaseModel': BaseModel, 'User': User, 'Place': Place,
-            'State': State, 'City': City, 'Amenity': Amenity,
-            'Review': Review
-        }
         # an empty dict to collect generated data
         new_ob = {}
 
@@ -65,6 +65,7 @@ class FileStorage:
 
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[key] = obj
+        me = FileStorage.classes
 
     def save(self):
         """Saves storage dictionary to file"""
@@ -82,26 +83,13 @@ class FileStorage:
         Only if the JSON file (__file_path) exists; otherwise, do nothing.
         If the file does not exist, no exception should be raised.
         """
-        from models.base_model import BaseModel
-        from models.user import User
-        from models.place import Place
-        from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.review import Review
-
-        classes = {
-            'BaseModel': BaseModel, 'User': User, 'Place': Place,
-            'State': State, 'City': City, 'Amenity': Amenity,
-            'Review': Review
-        }
         try:
             with open(FileStorage.__file_path, 'r') as f:
                 temp = json.load(f)
                 for key, val in temp.items():
                     class_name = val['__class__']
-                    if class_name in classes:
-                        self.__objects[key] = classes[class_name](**val)
+                    if class_name in self.classes:
+                        self.__objects[key] = self.classes[class_name](**val)
         except FileNotFoundError:
             pass
 
@@ -174,20 +162,6 @@ class FileStorage:
             # Count only objects of class 'State'
             state_objects = storage.count(State)
         """
-
-        from models.base_model import BaseModel
-        from models.user import User
-        from models.place import Place
-        from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.review import Review
-
-        classes = {
-            'BaseModel': BaseModel, 'User': User, 'Place': Place,
-            'State': State, 'City': City, 'Amenity': Amenity,
-            'Review': Review
-        }
         if not cls and id:
             return len(self.all(cls))
         else:
