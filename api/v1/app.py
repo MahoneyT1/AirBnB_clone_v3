@@ -1,5 +1,8 @@
 #!usr/bin/python3
-""" The app-server blueprint """
+""" The app-server blueprint
+
+Makes use of env to serve status ok!
+"""
 
 from flask import Flask
 from os import environ
@@ -13,11 +16,11 @@ from api.v1.views import app_views
 host = environ.get("HBNB_API_HOST")
 port = environ.get("HBNB_API_PORT")
 
-
 app.register_blueprint(app_views, url_prefix="/api/v1")
 
 @app.teardown_appcontext
 def close_connection(exception):
+    """Closes connection incase of an Exception"""
     if exception:
         storage.close()
 
