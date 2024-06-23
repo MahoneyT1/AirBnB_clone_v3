@@ -5,11 +5,15 @@ if status is 200
 
 from api.v1.views import app_views
 from flask import jsonify
+from flask import request, make_response
 
-@app_views.route("/status")
-def status():
+
+@app_views.route("/status", methods=["GET"])
+def status_of():
     """ status route """
-    obj_to_return = {
-        "status": "ok"
-    }
-    return jsonify(obj_to_return)
+
+    status = "Ok"
+    response = make_response(jsonify({"status": status}))
+    response.headers['content-type'] = "application/json"
+
+    return response
