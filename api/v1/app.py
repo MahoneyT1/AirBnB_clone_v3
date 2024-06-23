@@ -1,35 +1,26 @@
-#!/usr/bin/python3
-"""
-Summary or Description of the Function
-Parameters:
-  argument1 (int): Description of arg1
-Returns:
-  int: Returning value.
-"""
-from api.v1.views import app_views
-from models import storage
-import os
+#!usr/bin/python3
+""" The app-server blueprint """
+
 from flask import Flask
+from os import environ
 
-# get environment variables
-host = os.getenv('HBNB_API_HOST')
-port = os.getenv('HBNB_API_PORT')
-
-# create the instance of flask
+# create an instance of flask-app
 app = Flask(__name__)
+from models import storage
+from api.v1.views import app_views
 
-# import some libries here to avoid circuller imports
-app.register_blueprint(app_views, url_prefix='/api/v1')
+# environment variables
+host = environ.get("HBNB_API_HOST")
+port = environ.get("HBNB_API_PORT")
 
-# connection close for any request sent
+
+app.register_blueprint(app_views, url_prefix="/api/v1")
+
 @app.teardown_appcontext
-def close_c(exception=None):
-    """ all of the avove"""
+def close_connection(exception):
     if exception:
-      app.logger.error('Teardown called with exception: %s',
-                        exception)
-    storage.close()
+        storage.close()
 
 
 if __name__ == "__main__":
-  app.run(host=host, port=port, threaded=True)
+    app.run(host, port, threaded=True)
