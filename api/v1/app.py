@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+""" The app-server blueprint
+
+Makes use of env to serve status ok!
+"""
 
 from flask import Flask
 from os import environ
