@@ -26,4 +26,4 @@ def close_connection(exception):
 
 
 if __name__ == "__main__":
-    app.run(host, port, threaded=True)
+    app.run(host, port=5050, threaded=True)
