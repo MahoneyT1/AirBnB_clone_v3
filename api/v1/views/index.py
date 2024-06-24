@@ -15,5 +15,6 @@ def status_of():
     status = "Ok"
     response = make_response(jsonify({"status": status}))
     response.headers['content-type'] = "application/json"
+    response.body
 
     return response
