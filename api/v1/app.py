@@ -26,9 +26,9 @@ if __name__ == "__main__":
     from sys import argv
 
     if environ.get("HBNB_API_HOST") == "":
-        host = "0.0.0.0"
+        host = "127.0.0.1"
     else:
-        host = environ.get("HBNB_API_HOST")
+        host = "127.0.0.1"   #environ.get("HBNB_API_HOST")
         
     if environ.get("HBNB_API_PORT") == "":
         port = 5000
