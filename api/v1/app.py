@@ -9,7 +9,7 @@ from flask_cors import CORS
 
 # create an instance of flask-app
 app = Flask(__name__)
-CORS(app, resources={r'/*': {"origins": "0.0.0.0"}})
+cors = CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
 
 from api import storage
 from api.v1.views import app_views
@@ -26,5 +26,6 @@ def close_connection(exception):
 
 if __name__ == "__main__":
     # check if enviroment variable was passed
-
-    app.run(getenv("HBNB_API_HOST"), getenv("HBNB_API_PORT"))
+    host = getenv("HBNB_API_HOST", "0.0.0.0")
+    port = int(getenv("HBNB_API_PORT", "5000"))
+    app.run(host=host, port=port, debug=True)
