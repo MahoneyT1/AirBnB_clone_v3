@@ -25,12 +25,12 @@ def status_of():
                  methods=['GET'])
 def stats_check():
     """ populates the statistics """
-    all_obj = {"User": storage.count(user.User),
-               "Place": storage.count(place.Place),
-               "State": storage.count(state.State),
-               "Review": storage.count(review.Review),
-               "Amenity": storage.count(amenity.Amenity),
-               "City": storage.count(city.City)
+    all_obj = {"users": storage.count(user.User),
+               "places": storage.count(place.Place),
+               "states": storage.count(state.State),
+               "reviews": storage.count(review.Review),
+               "amenities": storage.count(amenity.Amenity),
+               "cities": storage.count(city.City)
                }
     response = make_response(jsonify(all_obj))
     return response
