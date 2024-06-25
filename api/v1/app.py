@@ -5,9 +5,12 @@ Makes use of env to serve status ok!
 
 from flask import Flask
 from os import environ
+from flask_cors import CORS
 
 # create an instance of flask-app
 app = Flask(__name__)
+CORS(app, resources={r'/api*': {"origins": "0.0.0.0"}})
+
 from api import storage
 from api.v1.views import app_views
 
@@ -28,4 +31,4 @@ if __name__ == "__main__":
     host = environ.get("HBNB_API_HOST")
     port = int(environ.get("HBNB_API_PORT"))
 
-    app.run(host=host, port=port, threaded=True, debug=True)
+    app.run(host=host, port=port, threaded=True)
