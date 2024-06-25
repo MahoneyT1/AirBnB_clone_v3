@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-""" The app-server blueprint
-
+"""The app-server blueprint
 Makes use of env to serve status ok!
 """
 
@@ -23,6 +22,17 @@ def close_connection(exception):
 
 
 if __name__ == "__main__":
-    host = environ.get("HBNB_API_HOST")
-    port = environ.get("HBNB_API_PORT")
+    # check if enviroment variable was passed
+    from sys import argv
+
+    if environ.get("HBNB_API_HOST") == "":
+        host = "0.0.0.0"
+    else:
+        host = environ.get("HBNB_API_HOST")
+        
+    if environ.get("HBNB_API_PORT") == "":
+        port = 5000
+    else:
+        port = environ.get("HBNB_API_PORT")
+
     app.run(host, port, threaded=True, debug=True)
