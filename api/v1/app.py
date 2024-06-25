@@ -4,12 +4,12 @@ Makes use of env to serve status ok!
 """
 
 from flask import Flask
-from os import environ
+from os import getenv
 from flask_cors import CORS
 
 # create an instance of flask-app
 app = Flask(__name__)
-CORS(app, resources={r'/api*': {"origins": "0.0.0.0"}})
+CORS(app, resources={r'/*': {"origins": "0.0.0.0"}})
 
 from api import storage
 from api.v1.views import app_views
@@ -26,9 +26,5 @@ def close_connection(exception):
 
 if __name__ == "__main__":
     # check if enviroment variable was passed
-    from sys import argv
 
-    host = environ.get("HBNB_API_HOST")
-    port = int(environ.get("HBNB_API_PORT"))
-
-    app.run(host=host, port=port, threaded=True)
+    app.run(getenv("HBNB_API_HOST"), getenv("HBNB_API_PORT"))
