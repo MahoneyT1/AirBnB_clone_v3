@@ -16,9 +16,7 @@ def status_of():
     """ status route """
 
     status = "Ok"
-    response = make_response(jsonify({"status": status}))
-    response.headers['content-type'] = "application/json"
-    response.status = 200
+    response = make_response(jsonify({"status": status}), 200)
 
     return response
 
@@ -33,6 +31,5 @@ def stats_check():
                "amenities": storage.count(amenity.Amenity),
                "cities": storage.count(city.City)
                }
-    response = make_response(jsonify(all_obj))
-    response.status = 200
+    response = make_response(jsonify(all_obj), 200)
     return response
