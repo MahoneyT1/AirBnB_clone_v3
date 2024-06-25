@@ -13,8 +13,6 @@ from models import storage
 from api.v1.views import app_views
 
 # environment variables
-
-
 app.register_blueprint(app_views, url_prefix="/api/v1")
 
 @app.teardown_appcontext
@@ -27,4 +25,4 @@ def close_connection(exception):
 if __name__ == "__main__":
     host = environ.get("HBNB_API_HOST")
     port = environ.get("HBNB_API_PORT")
-    app.run(host, port=5050, threaded=True, debug=True)
+    app.run(host, port, threaded=True, debug=True)

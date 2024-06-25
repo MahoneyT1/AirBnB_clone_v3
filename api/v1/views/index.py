@@ -8,13 +8,13 @@ from flask import jsonify
 from flask import request, make_response
 
 
-@app_views.route("/status", methods=["GET"])
+@app_views.route("/status", strict_slashes=False ,methods=["GET"])
 def status_of():
     """ status route """
 
     status = "Ok"
     response = make_response(jsonify({"status": status}))
     response.headers['content-type'] = "application/json"
-    response.body
+
 
     return response
