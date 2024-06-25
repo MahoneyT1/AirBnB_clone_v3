@@ -8,7 +8,7 @@ from os import environ
 
 # create an instance of flask-app
 app = Flask(__name__)
-from models import storage
+from api import storage
 from api.v1.views import app_views
 
 # environment variables
@@ -25,14 +25,7 @@ if __name__ == "__main__":
     # check if enviroment variable was passed
     from sys import argv
 
-    if environ.get("HBNB_API_HOST") == "":
-        host = "0.0.0.0"
-    else:
-        host = environ.get("HBNB_API_HOST")
-        
-    if environ.get("HBNB_API_PORT") == "":
-        port = 5000
-    else:
-        port = environ.get("HBNB_API_PORT")
+    host = environ.get("HBNB_API_HOST")
+    port = int(environ.get("HBNB_API_PORT"))
 
-    app.run(host, port, threaded=True, debug=True)
+    app.run(host=host, port=port, threaded=True, debug=True)
