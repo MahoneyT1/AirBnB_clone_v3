@@ -43,14 +43,14 @@ class Place(BaseModel, Base):
         @property
         def amenities(self):
             """ returns list of amenities """
+            from models import storage
 
             from models.amenity import Amenity
             clss = {'Amenity': Amenity}
             amenity_list = []
 
-            for obj in self.__objects.items():
-                if obj == clss['Amenity']:
-                    amenity_list.append(obj)
+            for obj in storage.all(clss['Amenity']):
+                amenity_list.append(obj)
             return amenity_list
 
         @amenities.setter
