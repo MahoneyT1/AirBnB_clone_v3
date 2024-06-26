@@ -30,7 +30,7 @@ def state_get():
     response = make_response(jsonify(list_of_states), 200)
     return response
 
-@app_views.route("/states/<int:state_id>",
+@app_views.route("/states/<string:state_id>",
                  strict_slashes=False,
                        methods=['GET'])
 def get_state_id(state_id):
