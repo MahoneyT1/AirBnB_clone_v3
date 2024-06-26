@@ -6,7 +6,7 @@ from models.base_model import BaseModel
 from api.v1 import app, app_views
 from models import storage
 from flask import jsonify, make_response, abort
-
+from models.state import State
 @app_views.route("/api/v1/states",
                  strict_slashes=False,
                        methods=['GET'])
