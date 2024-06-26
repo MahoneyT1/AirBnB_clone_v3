@@ -7,9 +7,9 @@ from api.v1 import app, app_views
 from models import storage
 from flask import jsonify, make_response, abort
 from models.state import State
-@app_views.route("/states",
-                 strict_slashes=False,
-                       methods=['GET'])
+
+@app_views.route("/states", strict_slashes=False,
+                                 methods=['GET'])
 def state_get():
     """Retrieves the list of all State objects
     GET /api/v1/states
