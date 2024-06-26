@@ -7,7 +7,7 @@ from api.v1 import app, app_views
 from models import storage
 from flask import jsonify, make_response, abort
 from models.state import State
-@app_views.route("/api/v1/states",
+@app_views.route("/states",
                  strict_slashes=False,
                        methods=['GET'])
 def state_get():
@@ -30,7 +30,7 @@ def state_get():
     response = make_response(jsonify(list_of_states), 200)
     return response
 
-@app_views.route("/api/v1/states/<int:state_id>",
+@app_views.route("/states/<int:state_id>",
                  strict_slashes=False,
                        methods=['GET'])
 def get_state_id(state_id):
