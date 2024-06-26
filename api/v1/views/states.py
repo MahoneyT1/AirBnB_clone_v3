@@ -8,8 +8,7 @@ from models import storage
 from flask import jsonify, make_response, abort
 from models.state import State
 
-@app_views.route("/states", strict_slashes=False,
-                                 methods=['GET'])
+@app_views.route("/states", methods=['GET'], strict_slashes=False)
 def state_get():
     """Retrieves the list of all State objects
     GET /api/v1/states
@@ -31,8 +30,7 @@ def state_get():
     return response
 
 string_uri = "/states/<state_id>"
-@app_views.route(string_uri, strict_slashes=False,
-                                   methods=['GET'])
+@app_views.route(string_uri, methods=['GET'], strict_slashes=False)
 def get_state_id(state_id):
     """Retrieves a State object: GET /api/v1/states
     /<state_id>
