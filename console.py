@@ -271,13 +271,13 @@ class HBNBCommand(cmd.Cmd):
             data_from = storage.all(class_name)
 
             for k, v in data_from.items():
-                key = f"[{v.__class__.__name__}] ({v.id})"
+                key = "[{}] ({})".format(v.__class__.__name__, v.id)
                 print(key, v)
         else:
             data_all = storage.all()
 
             for k, v in data_all.items():
-                key = f"[{v.__class__.__name__}] ({v.id})"
+                key = "[{}] ({})".format(v.__class__.__name__, v.id)
                 print(key, v)
 
     def help_all(self):
