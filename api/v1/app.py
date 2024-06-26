@@ -35,7 +35,7 @@ def not_found(error):
     """
     status_obj = {"error": "Not found"}
     response = make_response(jsonify(status_obj), 404)
-    response.status = 200
+    response.status = 404
     return response
 
 
