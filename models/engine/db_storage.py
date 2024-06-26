@@ -55,7 +55,10 @@ class DBStorage:
         host = os.getenv("HBNB_MYSQL_HOST")
         database = os.getenv("HBNB_MYSQL_DB")
 
-        con_string = f"mysql+mysqldb://{username}:{password}@{host}/{database}"
+        con_string = "mysql+mysqldb://{}:{}@{}/{}".format(username,
+                                                          password,
+                                                          host,
+                                                          database)
 
         # create engine
         self.__engine = create_engine(con_string,
@@ -105,7 +108,7 @@ class DBStorage:
         try:
             self.__session.add(obj)
         except SQLAlchemyError as e:
-            print(f"Error adding object to Session: {e}")
+            print("Error adding object to Session: {}".format(e))
             self.__session.rollback()
 
     def save(self):
@@ -117,7 +120,7 @@ class DBStorage:
         try:
             self.__session.commit()
         except SQLAlchemyError as e:
-            print(f"Error committing session: {e}")
+            print("Error committing session: {}".format(e))
 
     def delete(self, obj=None):
         """
@@ -128,7 +131,7 @@ class DBStorage:
             if obj:
                 self.__session.delete(obj)
         except SQLAlchemyError as e:
-            print(f"deleting object in session error {e}")
+            print("deleting object in session error {}".format(e))
 
     def reload(self):
         """
@@ -173,7 +176,7 @@ class DBStorage:
                     result = self.__session.query(all_class)
 
                     for b in result:
-                        key = f"[{b.__class__.__name__}] ({b.id})"
+                        key = "[{}] ({})".format(b.__class__.__name__, b.id)
                         my_ob[key] = vars(b)
                     return my_ob
         return None
