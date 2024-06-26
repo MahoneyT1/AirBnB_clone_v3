@@ -9,8 +9,9 @@ from flask_cors import CORS
 
 # create an instance of flask-app
 app = Flask(__name__)
-cors = CORS(app,
-        resources={r"/*": {"origins": "0.0.0.0"}})
+cors = CORS(app, resources={
+                            r"/*": {"origins": "0.0.0.0"}
+                            })
 
 from api import storage
 from api.v1.views import app_views
@@ -21,17 +22,20 @@ app.register_blueprint(app_views)
 @app.teardown_appcontext
 def close_connection(exception):
     """Closes connection incase of an Exception"""
+
     if exception:
         storage.close()
 
 @app.errorhandler(404)
 def not_found(error):
-    """In api/v1/app.py, create a handler for 404 errors
-    that returns a JSON-formatted 404 status code response.
-    The content should be: "error": "Not found".
+    """In api/v1/app.py, create a handler
+    for 404 errors that returns a JSON-formatted
+    404 status code response. The content should
+    be: "error": "Not found".
     """
     status_obj = {"error": "Not found"}
     response = make_response(jsonify(status_obj), 404)
+    response.status = 200
     return response
 
 
