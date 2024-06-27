@@ -26,8 +26,8 @@ def state_get():
     # using the make_response method and customise
     # a response
 
-    response = make_response(jsonify(list_of_states), 200)
-    return response
+    #response = make_response(jsonify(list_of_states), 200)
+    return list_of_states
 
 string_uri = "/states/<state_id>"
 @app_views.route(string_uri, methods=['GET'], strict_slashes=False)
@@ -38,15 +38,16 @@ def get_state_id(state_id):
     # using the get method of db storage, extract State
     # by state_id
     state_obj = storage.get(State, state_id)
+    return state_obj
 
     # check if state_obj is None and return 404
-    if state_obj is None:
-        abort(404)
-    else:
-        response = make_response(jsonify(state_obj), 200)
-        return response
+    #if state_obj is None:
+     #   abort(404)
+    #else:
+        #response = make_response(jsonify(state_obj), 200)
+        #return response
 
-@app_views.route("/api/v1/states/<int:state_id>",
+@app_views.route("/states/<state_id>",
                             strict_slashes=False,
                             methods=['DELETE'])
 def delete_state(state_id):
