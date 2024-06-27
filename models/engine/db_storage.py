@@ -168,17 +168,10 @@ class DBStorage:
             If it does not exist, `state` will be None.
         """
 
-        my_ob = {}
+        new_obj = {}
         if cls and id:
-            for k, v in self.classes.items():
-                if v == cls:
-                    all_class = self.classes[k]
-                    result = self.__session.query(all_class)
-
-                    for b in result:
-                        key = "[{}] ({})".format(b.__class__.__name__, b.id)
-                        my_ob[key] = vars(b)
-                    return my_ob
+           key = f"{cls.__class__.__name__} {id}"
+           return self.all(cls)[key]
         return None
 
     def count(self, cls=None):

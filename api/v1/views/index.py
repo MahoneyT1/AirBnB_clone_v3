@@ -10,8 +10,7 @@ from models import storage
 from models import user, city, place, amenity, review, state
 
 
-@app_views.route("/status", strict_slashes=False,
-                 methods=["GET"])
+@app_views.route("/status", strict_slashes=False, methods=["GET"])
 def status_of():
     """ status route """
 
