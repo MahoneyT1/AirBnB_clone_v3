@@ -26,7 +26,7 @@ def state_get(state_id):
     response = make_response(jsonify(list_of_states), 200)
     return response
 
-@app_views.route("/states/<state>", methods=['GET'], strict_slashes=False)
+@app_views.route("/states/<state_id>", methods=['GET'], strict_slashes=False)
 def get_main_state(state_id):
     """Gets a particular state by id
     """
