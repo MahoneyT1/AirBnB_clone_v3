@@ -170,7 +170,7 @@ class DBStorage:
 
         new_obj = {}
         if cls and id:
-           key = f"{cls.__class__.__name__} {id}"
+           key = f"{cls.__class__.__name__}.{id}"
            return self.all(cls)[key]
         return None
 
