@@ -1,58 +1,61 @@
-#!/usr/bin/python3
-"""Create a new view for State objects that
-handles all default RESTFul API actions
-"""
 from models.base_model import BaseModel
+from flask import make_response, jsonify, abort, request
 from api.v1.views import app_views
 from models import storage
-from flask import jsonify, make_response, abort
 from models.state import State
 
 @app_views.route("/states", methods=['GET'], strict_slashes=False)
-def state_get():
-    """Retrieves the list of all State objects
-    GET /api/v1/states
+def check_status():
+    """retrieves the list of state object
     """
-
-    # create a list to extract list of all states in
-    list_of_states = []
-    # get the copy of States from storage
+    # fetch all the data of state from database
     all_data = storage.all(State)
 
-    for key, value in all_data.items():
-        list_of_states.append({key:value.to_dict()})
+    new_list = []
 
-    # construct a response
-    response = make_response(jsonify(list_of_states), 200)
+    for v in all_data.values():
+        new_list.append(v.to_dict())
+
+    response = make_response(jsonify(new_list), 200)
     return response
 
-@app_views.route("/states/<state_id>",  methods=["GET"], strict_slashes=False)
-def state_by_id(state_id):
+
+@app_views.route("states/<state_id>", methods=['GET', 'DELETE'], strict_slashes=False)
+def get_state_by_id(state_id):
+    """Gets the state by id
     """
-    gets a specific State object by ID
-    :param state_id: state object id
-    :return: state obj with the specified id or error
-    """
-    # using the get method of db_storage
-    # and extract the state and id
-    fetched_obj = storage.get(State, state_id)
+    if request.method == 'GET':
+        # Get the state from the storage
+        state = storage.get(State, state_id)
+        # Check if the return result is None
+        if state is None:
+            abort(404)
+        json_state = state.to_dict()
+        response = make_response(json_state, 200)
+        return response
+    
+    elif request.method == 'DELETE':
+        """Deletes state class by Id
+        """
+        state_to_delete = storage.get(State, state_id)
+        print(state_to_delete)
+        
+        if state_to_delete is None:
+            abort(404)
+        storage.delete(state_to_delete)
+        storage.save()
+        return make_response(jsonify({}), 200)
 
-    obj = fetched_obj
-    # using the make_reponse of flask to generate a response
-    obj_b = make_response(jsonify(obj), 200)
 
-    return obj
 
-@app_views.route("/states/<state_id>", methods=['DELETE'], strict_slashes=False)
-def delete_cls_by_id(state_id):
-    """deletes a class if id matches any in db
-    """
-    state = storage.get(State, state_id)
-    #del storage.all()[state]
-    bbb = state
-
-    storage.delete(bbb)
-    storage.save()
-
-   # return jsonify({})
-
+# @app_views.route("/states/<state_id>", methods=['DELETE'], strict_slashes=False)
+# def delete_class_by_id(state_id):
+#     """Deletes state class by Id
+#     """
+#     state_to_delete = storage.get(State, state_id)
+#     print(state_to_delete)
+#     if state_to_delete is None:
+#         abort(404)
+#     storage.delete(state_to_delete)
+#     storage.save()
+#     return make_response(jsonify({}), 200)

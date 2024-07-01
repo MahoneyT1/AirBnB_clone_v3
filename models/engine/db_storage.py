@@ -122,7 +122,7 @@ class DBStorage:
         except SQLAlchemyError as e:
             print("Error committing session: {}".format(e))
 
-    def delete(self, obj=None):
+    def delete(self, obj):
         """
         delete from the current database session obj if not None
         """
@@ -167,12 +167,8 @@ class DBStorage:
             with ID `1234`.
             If it does not exist, `state` will be None.
         """
-
-        new_obj = {}
-        if cls and id:
-           key = f"{cls.__class__.__name__}.{id}"
-           return self.all(cls)[key]
-        return None
+        query_result = self.__session.query(cls).get(id)
+        return query_result
 
     def count(self, cls=None):
         """

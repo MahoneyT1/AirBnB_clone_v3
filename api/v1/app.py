@@ -26,17 +26,17 @@ def close_connection(exception):
     if exception:
         storage.close()
 
-# @app.errorhandler(404)
-# def not_found(error):
-#     """In api/v1/app.py, create a handler
-#     for 404 errors that returns a JSON-formatted
-#     404 status code response. The content should
-#     be: "error": "Not found".
-#     """
-#     status_obj = {"error": "Not found"}
-#     response = make_response(jsonify(status_obj), 404)
-#     response.status = 404
-#     return response
+@app.errorhandler(404)
+def not_found(error):
+    """In api/v1/app.py, create a handler
+    for 404 errors that returns a JSON-formatted
+    404 status code response. The content should
+    be: "error": "Not found".
+    """
+    status_obj = {"error": "Not found"}
+    response = make_response(jsonify(status_obj), 404)
+    response.status = 404
+    return response
 
 
 if __name__ == "__main__":

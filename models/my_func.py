@@ -9,7 +9,7 @@ def single_double_quote(str, key):
             (str) string to strip quotes
             (key) key to create new dict with
         """ 
-        obj_to_return = {}       
+        obj_to_return = {}
                 
         if str.startswith('"') or str.startswith("'")\
             and str.endswith('"') or str.endswith("'"):
