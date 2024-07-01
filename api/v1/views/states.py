@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""The state view that handles GET, DELETE,
+"""
+The state view that handles GET, DELETE,
 POST, PUT HTTP methods.
 
 returns:
