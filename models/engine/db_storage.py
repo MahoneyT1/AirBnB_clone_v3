@@ -167,8 +167,12 @@ class DBStorage:
             with ID `1234`.
             If it does not exist, `state` will be None.
         """
-        query_result = self.__session.query(cls).get(id)
-        return query_result
+        # query_result = self.__session.query(cls).get(id)
+        # return query_result
+        if cls and id:
+            query_data = self.__session.query(cls).get(id)
+            return query_data
+        return None
 
     def count(self, cls=None):
         """
