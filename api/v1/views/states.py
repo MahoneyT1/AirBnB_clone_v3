@@ -1,21 +1,13 @@
 #!/usr/bin/python3
 """
-The state view that handles GET, DELETE,
-POST, PUT HTTP methods.
-
-returns:
-    values
+The state view
 """
-
 from models.base_model import BaseModel
 from flask import make_response, jsonify, abort, request
 from api.v1.views import app_views
 from models import storage
 from models.state import State
 
-CCC = {
-    'state': State
-}
 
 @app_views.route("/states", methods=['GET'],
                  strict_slashes=False)
