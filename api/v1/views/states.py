@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from models.base_model import BaseModel
 from flask import make_response, jsonify, abort, request
 from api.v1.views import app_views
@@ -8,7 +9,8 @@ CCC = {
     'state': State
 }
 
-@app_views.route("/states", methods=['GET'], strict_slashes=False)
+@app_views.route("/states", methods=['GET'],
+                 strict_slashes=False)
 def check_status():
     """retrieves the list of state object
     """
@@ -24,7 +26,8 @@ def check_status():
     return response
 
 
-@app_views.route("states/<state_id>", methods=['GET', 'DELETE'], strict_slashes=False)
+@app_views.route("states/<state_id>",
+                 methods=['GET', 'DELETE'], strict_slashes=False)
 def get_state_by_id(state_id:str):
     """Gets the state by id
     """
@@ -41,7 +44,8 @@ def get_state_by_id(state_id:str):
             response = make_response(json_state, 200)
             return response
 
-@app_views.route("/states/<state_id>", methods=['DELETE'], strict_slashes=False)
+@app_views.route("/states/<state_id>", 
+                 methods=['DELETE'], strict_slashes=False)
 def delete_class_by_id(state_id):
     """Deletes state class by Id
     """
@@ -53,12 +57,13 @@ def delete_class_by_id(state_id):
     storage.save()
     return make_response(jsonify({}), 200)
 
-@app_views.route("states/", methods=['POST'], strict_slashes=False)
+@app_views.route("states/", methods=['POST'],
+                 strict_slashes=False)
 def post_state():
     """Creates a state
     """
-    if not request.json():
-        abort(404)
+    #if not request.json():
+    #   abort(404)
     data = request.get_json()
 
     if 'name' not in data:
@@ -69,4 +74,3 @@ def post_state():
 
     response = make_response(new_state.to_dict(), 200)
     return response
-
