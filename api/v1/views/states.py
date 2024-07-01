@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""The state view that handles GET, DELETE,
+POST, PUT HTTP methods.
+"""
 from models.base_model import BaseModel
 from flask import make_response, jsonify, abort, request
 from api.v1.views import app_views
