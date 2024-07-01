@@ -15,10 +15,9 @@ def list_of_cities(state_id):
     """
     list_of_cities = []
     state_city = storage.all(City)
+    print(state_city)
 
     for key, value in state_city.items():
-        if value.id == state_id:
-            list_of_cities.append(value)
-    
+        list_of_cities.append(value.to_dict())
     response = make_response(jsonify(list_of_cities), 200)
     return response
