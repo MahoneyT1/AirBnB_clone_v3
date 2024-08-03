@@ -49,6 +49,7 @@ class DBStorage:
                 for obj in objs:
                     key = obj.__class__.__name__ + '.' + obj.id
                     new_dict[key] = obj
+                    return new_dict
         return (new_dict)
 
     def new(self, obj):
@@ -74,3 +75,28 @@ class DBStorage:
     def close(self):
         """call remove() method on the private session attribute"""
         self.__session.remove()
+
+    def get(self, cls, id):
+        """A method to retrieve one object"""
+        result = self.__session.query(cls).filter_by(id=id)
+
+        return result
+    
+    def count(self, cls=None):
+        """A method to count the number of objects in storage
+        """
+        if cls:
+            newlist_len =[]
+            all_class = self.all(cls=cls)
+
+            for i in all_class:
+                newlist_len.append(i)
+            return len(newlist_len)
+
+        for value in classes.values():
+            result = self.__session.query(value)
+
+            len_result = []
+            for i in result:
+                len_result.append(i)
+            return len(len_result)
