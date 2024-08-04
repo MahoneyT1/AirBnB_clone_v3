@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 
 flask_host = os.getenv('HBNB_API_HOST')
-f_port = os.getenv('HBNB_API_PORT')
+f_port = int(os.getenv('HBNB_API_PORT'))
 
 app.register_blueprint(app_views)
 
