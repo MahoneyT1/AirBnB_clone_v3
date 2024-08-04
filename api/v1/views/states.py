@@ -36,10 +36,9 @@ def get_state(state_id):
     if state is None:
         abort(404)
 
-    for item in state:
-        json_state = item.to_dict()
+    state_json = state.to_dict()
 
-    response = make_response(jsonify(json_state), 200)
+    response = make_response(jsonify(state_json), 200)
     return response
 
 
