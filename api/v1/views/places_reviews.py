@@ -10,6 +10,7 @@ from models.review import Review
 from models.user import User
 
 
+
 @app_views.route('places/<place_id>/reviews', methods=['GET'], strict_slashes=False)
 def place_review(place_id):
     """Place review view"""
@@ -87,7 +88,7 @@ def update_review(review_id):
     data = request.get_json()
     if data is None:
         abort(400, 'Not a Json')
-    
+
     review = storage.get(Review, review_id)
 
     for k, v in data:
