@@ -3,6 +3,9 @@
 Contains the class DBStorage
 """
 
+from dotenv import load_dotenv
+
+
 import models
 from models.amenity import Amenity
 from models.base_model import BaseModel, Base
@@ -19,7 +22,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 classes = {"Amenity": Amenity, "City": City,
            "Place": Place, "Review": Review, "State": State, "User": User}
 
-
+load_dotenv()
 class DBStorage:
     """interaacts with the MySQL database"""
     __engine = None
